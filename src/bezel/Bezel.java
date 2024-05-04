@@ -14,7 +14,7 @@ public class Bezel extends JPanel {
 	static public int bezelHeight = (MyPanel.screenHeight)/5;
 	static public int bezelWidth = MyPanel.screenWidth;
 	
-	public JSlider octave_left = new JSlider(1,7,7);
+	public JSlider octave_left = new JSlider(1,7,4);
 	
 	
 	public Bezel() {
@@ -31,6 +31,14 @@ public class Bezel extends JPanel {
 		System.out.println(currentOctave);
 		return currentOctave;
 
+	}
+
+	public String nextOctave(JSlider s){
+		Integer x = s.getValue();
+		x = x + 1;
+		String nextOctave = x.toString();
+		System.out.println(nextOctave);
+		return nextOctave;
 	}
 	
 	

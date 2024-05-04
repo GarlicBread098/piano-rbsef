@@ -22,7 +22,7 @@ public class PlayKey {
 		      try {
 		        Clip clip = AudioSystem.getClip(); // creates a new audion clip 
 		        AudioInputStream inputStream = AudioSystem.getAudioInputStream(
-		          MyPiano.class.getResourceAsStream("/res/NOTES/" + octave + str)); // gets accses to folder with audio files
+		          MyPiano.class.getResourceAsStream("/NOTES/" + octave + str)); // gets accses to folder with audio files
 				  System.out.println("/NOTES/" + octave + str);
 		        clip.open(inputStream); // opens the spesific file 
 		        clip.start(); // playsm the clip

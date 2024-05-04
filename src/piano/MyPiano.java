@@ -13,7 +13,7 @@ public class MyPiano extends JPanel {
 
 	int octaveOnScreen1 = 1; // the first octave on screen
 	int octaveOnScreen2 = 2; // the second octave on screen
-	int whiteKeysScreen = 17; // number of white keys on screen
+	int whiteKeysScreen = 14; // number of white keys on screen
 	int blackKeysScreen = 10; // number of black keys on screen
 
 	public MyBlackKey[] bk = new MyBlackKey[blackKeysScreen];

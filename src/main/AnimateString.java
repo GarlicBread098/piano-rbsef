@@ -33,7 +33,7 @@ public class AnimateString extends JPanel {
             }
 
             else { // else the character isn't a space then it will run the following code
-                String imagePath = "/res/Font/" + ch + ".PNG"; // This is simply recording the path of the image for
+                String imagePath = "/Font/" + ch + ".PNG"; // This is simply recording the path of the image for
                                                                // easy access
                 InputStream inputStream = getClass().getResourceAsStream(imagePath); //
 

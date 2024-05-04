@@ -109,7 +109,7 @@ public class MyPanel extends JPanel implements Runnable {
 				}
 
 			}
-			if (key == KeyEvent.VK_J) {
+			if (key == KeyEvent.VK_H) {
 				try {
 					pk.playSound(b.Currentoctave(b.octave_left),"-a.wav");
 					update(myPiano.notes[5]);
@@ -119,7 +119,7 @@ public class MyPanel extends JPanel implements Runnable {
 				}
 
 			}
-			if (key == KeyEvent.VK_K) {
+			if (key == KeyEvent.VK_J) {
 				try {
 					pk.playSound(b.Currentoctave(b.octave_left),"-b.wav");
 					update(myPiano.notes[6]);
@@ -129,9 +129,82 @@ public class MyPanel extends JPanel implements Runnable {
 				}
 
 			}
+			//// Second octave
+			if (key == KeyEvent.VK_V) {
+				try {
+					//System.out.println(b.Currentoctave(b.octave_left)+1);
+					pk.playSound(b.nextOctave(b.octave_left), "-c.wav"); // plays sound if certain key is pressed
+					update(myPiano.notes[0]); // updates the output arrayList
+					myPiano.wk[0].pressed = true; // sets the corresponding key as pressed
+				} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+
+			}
+			if (key == KeyEvent.VK_B) {
+				try {
+					pk.playSound(b.nextOctave(b.octave_left),"-d.wav");
+					update(myPiano.notes[1]);
+				} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
+					// TODO Auto-generated catch block
+					((Throwable) e1).printStackTrace();
+				}
+
+			}
+			if (key == KeyEvent.VK_N) {
+				try {
+					pk.playSound(b.nextOctave(b.octave_left),"-e.wav");
+					update(myPiano.notes[2]);
+				} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+
+			}
+			if (key == KeyEvent.VK_M) {
+				try {
+					pk.playSound(b.nextOctave(b.octave_left),"-f.wav");
+					update(myPiano.notes[3]);
+				} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+
+			}
+			if (key == KeyEvent.VK_COMMA) {
+				try {
+					pk.playSound(b.nextOctave(b.octave_left),"-g.wav");
+					update(myPiano.notes[4]);
+				} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+
+			}
+			if (key == KeyEvent.VK_PERIOD) {
+				try {
+					pk.playSound(b.nextOctave(b.octave_left),"-a.wav");
+					update(myPiano.notes[5]);
+				} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+
+			}
+			if (key == KeyEvent.VK_SLASH) {
+				try {
+					pk.playSound(b.nextOctave(b.octave_left),"-b.wav");
+					update(myPiano.notes[6]);
+				} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+
+			}
 
 			// black keys
-			if (key == KeyEvent.VK_W) {
+			if (key == KeyEvent.VK_Q) {
 				try {
 					pk.playSound(b.Currentoctave(b.octave_left),"-cs.wav");
 					update(myPiano.sharpNotes[0]);
@@ -141,7 +214,7 @@ public class MyPanel extends JPanel implements Runnable {
 				}
 
 			}
-			if (key == KeyEvent.VK_E) {
+			if (key == KeyEvent.VK_W) {
 				try {
 					pk.playSound(b.Currentoctave(b.octave_left),"-ds.wav");
 					update(myPiano.sharpNotes[1]);
@@ -151,7 +224,7 @@ public class MyPanel extends JPanel implements Runnable {
 				}
 
 			}
-			if (key == KeyEvent.VK_T) {
+			if (key == KeyEvent.VK_E) {
 				try {
 					pk.playSound(b.Currentoctave(b.octave_left),"-fs.wav");
 					update(myPiano.sharpNotes[2]);
@@ -161,7 +234,7 @@ public class MyPanel extends JPanel implements Runnable {
 				}
 
 			}
-			if (key == KeyEvent.VK_Y) {
+			if (key == KeyEvent.VK_R) {
 				try {
 					pk.playSound(b.Currentoctave(b.octave_left),"-gs.wav");
 					update(myPiano.sharpNotes[3]);
@@ -171,9 +244,60 @@ public class MyPanel extends JPanel implements Runnable {
 				}
 
 			}
-			if (key == KeyEvent.VK_U) {
+			if (key == KeyEvent.VK_T) {
 				try {
 					pk.playSound(b.Currentoctave(b.octave_left),"-as.wav");
+					update(myPiano.sharpNotes[4]);
+				} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+
+			}
+			//second octave 
+			if (key == KeyEvent.VK_Y) {
+				try {
+					pk.playSound(b.nextOctave(b.octave_left),"-cs.wav");
+					update(myPiano.sharpNotes[0]);
+				} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+
+			}
+			if (key == KeyEvent.VK_U) {
+				try {
+					pk.playSound(b.nextOctave(b.octave_left),"-ds.wav");
+					update(myPiano.sharpNotes[1]);
+				} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+
+			}
+			if (key == KeyEvent.VK_I) {
+				try {
+					pk.playSound(b.nextOctave(b.octave_left),"-fs.wav");
+					update(myPiano.sharpNotes[2]);
+				} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+
+			}
+			if (key == KeyEvent.VK_O) {
+				try {
+					pk.playSound(b.nextOctave(b.octave_left),"-gs.wav");
+					update(myPiano.sharpNotes[3]);
+				} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+
+			}
+			if (key == KeyEvent.VK_P) {
+				try {
+					pk.playSound(b.nextOctave(b.octave_left),"-as.wav");
 					update(myPiano.sharpNotes[4]);
 				} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
 					// TODO Auto-generated catch block
