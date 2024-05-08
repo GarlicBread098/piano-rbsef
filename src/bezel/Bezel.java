@@ -15,7 +15,8 @@ public class Bezel extends JPanel {
 	static public int bezelWidth = MyPanel.screenWidth;
 	
 	public JSlider octave_left = new JSlider(1,7,4);
-	
+	public JSlider octave_right = new JSlider(1,7,4);
+
 	
 	public Bezel() {
 		octave_left.setPreferredSize(new Dimension(200, 100));
@@ -23,6 +24,12 @@ public class Bezel extends JPanel {
         octave_left.setPaintTrack(true);
         octave_left.setPaintLabels(true);
         octave_left.setMajorTickSpacing(1);
+
+		octave_right.setPreferredSize(new Dimension(200, 100));
+        octave_right.setPaintTicks(true);
+        octave_right.setPaintTrack(true);
+        octave_right.setPaintLabels(true);
+        octave_right.setMajorTickSpacing(1);
 	}
 	
 	public String Currentoctave(JSlider s){

@@ -8,6 +8,7 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
 import src.bezel.Bezel;
+import src.bezel.Slider;
 import src.piano.MyBlackKey;
 import src.piano.MyWhiteKey;
 import src.piano.PlayKey;
@@ -16,17 +17,22 @@ public class MouseHandler implements MouseListener {
     boolean mousePressed = false;
     PlayKey pk = new PlayKey();
     Bezel b = new Bezel();
+
     MyBlackKey[] bk;
     MyWhiteKey[] wk;
 
-    public MouseHandler(MyBlackKey[] bk, MyWhiteKey[] wk){
+    Slider s1, s2;
+
+    public MouseHandler(MyBlackKey[] bk, MyWhiteKey[] wk, Slider s1, Slider s2){
         this.bk = bk;
         this.wk = wk;
+        this.s1 = s1;
+        this.s2 = s2;
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        
+        //work out a method to check if it was clicked within the notches to change the octave
     }
 
     @Override
@@ -38,6 +44,8 @@ public class MouseHandler implements MouseListener {
         
 
         if(y <= Bezel.bezelHeight){ // checks if the y coordinate is within the bezel 
+            checkIfSliderPressed(s1, x, y);
+            checkIfSliderPressed(s2, x, y);
 
         }
         else{ // this will run if the y coordinate is within the piano
@@ -250,12 +258,17 @@ public class MouseHandler implements MouseListener {
 
     @Override
     public void mouseReleased(MouseEvent e) {
-       
+        int x = e.getX();
+        setSliderOnRelease(s1, x);
+        setSliderOnRelease(s2, x);
+        
     }
 
     @Override
     public void mouseEntered(MouseEvent e) {
-        
+        int x = e.getX();
+        //moveSlider(s1,x);
+        //moveSlider(s2,x);
     }
 
     @Override
@@ -263,6 +276,55 @@ public class MouseHandler implements MouseListener {
        
     }
 
+    public void checkIfSliderPressed(Slider s, int x, int y){
+        if(y > s.y && y < (s.y + s.height))// checks if the mouse clicked in between the height of the slider
+        {
+            if(x > s.sliderX && x < (s.sliderX + s.sliderWidth))// checks if the mouse clicked in between the width of the slider
+            {
+                s.sliderPressed = true; // sets the slider to be pressed
+            }
+        }
+    }
+
+    
+
+    public void setSliderOnRelease(Slider s, int x){
+        if(s.sliderPressed){ // checks if the slider is pressed
+            s.sliderPressed = false;// sets the slider to not be pressed
+            
+
+            if(x < s.x){
+                s.octave = 1;
+            }
+            else if(x > s.x + s.width){
+                s.octave = 7;
+            }
+            else if((x > s.x) && ( x < (s.x + (s.width/16)*3))){
+                s.octave = 1;
+            }
+            else if((x > (s.x + (s.width/16)*3)) && ( x < (s.x + (s.width/16)*5))){
+                s.octave = 2;
+            }
+            else if((x > (s.x + (s.width/16)*5)) && ( x < (s.x + (s.width/16)*7))){
+                s.octave = 3;
+            }
+            else if((x > (s.x + (s.width/16)*7)) && ( x < (s.x + (s.width/16)*9))){
+                s.octave = 4;
+            }
+            else if((x > (s.x + (s.width/16)*9)) && ( x < (s.x + (s.width/16)*11))){
+                s.octave = 5;
+            }
+            else if((x > (s.x + (s.width/16)*11)) && ( x < (s.x + (s.width/16)*13))){
+                s.octave = 6;
+            }
+            else if((x > (s.x + (s.width/16)*13)) && ( x < (s.x + (s.width/16)*16))){
+                s.octave = 7;
+            }
+
+            
+
+       }
+    }
     /* 
     public void itClicked(MouseEvent e){
         int x = e.getX();

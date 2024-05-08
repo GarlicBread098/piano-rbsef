@@ -14,6 +14,7 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JPanel;
 
 import src.bezel.Bezel;
+import src.bezel.Slider;
 import src.piano.MyPiano;
 import src.piano.PlayKey;
 
@@ -23,11 +24,15 @@ public class MyPanel extends JPanel implements Runnable {
 
 	MyPiano myPiano = new MyPiano();
 	Bezel b = new Bezel();
+	Slider s1 = new Slider(50,b.bezelHeight/5, 315,45); // creates the first Slider for the first Octave 210-30
+	Slider s2 = new Slider(50,b.bezelHeight/5 + 60, 315,45); // creates the second Slider for the second Octave
+
 	PlayKey pk = new PlayKey();
-	MouseHandler mh = new MouseHandler(myPiano.bk, myPiano.wk);
+	MouseHandler mh = new MouseHandler(myPiano.bk, myPiano.wk,s1,s2);
 	KeyHandler kh = new KeyHandler();
 	AnimateString as = new AnimateString();
 	ArrayList<String> outputs = new ArrayList<String>();
+	
 
 	int FPS = 60;
 
@@ -45,9 +50,12 @@ public class MyPanel extends JPanel implements Runnable {
 
 	}
 
-	public void update(String note) {
-		outputs.add(note);
+	public void update(String note, String notes_octaves) {
+		
+		outputs.add(notes_octaves + "-" + note);
 		System.out.println(outputs);
+
+		
 
 	}
 
@@ -60,8 +68,8 @@ public class MyPanel extends JPanel implements Runnable {
 			// white keys
 			if (key == KeyEvent.VK_A) {
 				try {
-					pk.playSound(b.Currentoctave(b.octave_left), "-c.wav"); // plays sound if certain key is pressed
-					update(myPiano.notes[0]); // updates the output arrayList
+					pk.playSound(s1.octaveToString(), "-c.wav"); // plays sound if certain key is pressed
+					//update(b.octave_left.toString() , myPiano.notes[0]); // updates the output arrayList
 					myPiano.wk[0].pressed = true; // sets the corresponding key as pressed
 				} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
 					// TODO Auto-generated catch block
@@ -72,7 +80,7 @@ public class MyPanel extends JPanel implements Runnable {
 			if (key == KeyEvent.VK_S) {
 				try {
 					pk.playSound(b.Currentoctave(b.octave_left),"-d.wav");
-					update(myPiano.notes[1]);
+					//update(b.octave_left.toString(), myPiano.notes[1]);
 				} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
 					// TODO Auto-generated catch block
 					((Throwable) e1).printStackTrace();
@@ -82,7 +90,7 @@ public class MyPanel extends JPanel implements Runnable {
 			if (key == KeyEvent.VK_D) {
 				try {
 					pk.playSound(b.Currentoctave(b.octave_left),"-e.wav");
-					update(myPiano.notes[2]);
+					//update(b.octave_left.toString(), myPiano.notes[2]);
 				} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -92,7 +100,7 @@ public class MyPanel extends JPanel implements Runnable {
 			if (key == KeyEvent.VK_F) {
 				try {
 					pk.playSound(b.Currentoctave(b.octave_left),"-f.wav");
-					update(myPiano.notes[3]);
+					//update(b.octave_left.toString(), myPiano.notes[3]);
 				} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -102,7 +110,7 @@ public class MyPanel extends JPanel implements Runnable {
 			if (key == KeyEvent.VK_G) {
 				try {
 					pk.playSound(b.Currentoctave(b.octave_left),"-g.wav");
-					update(myPiano.notes[4]);
+					//update(b.octave_left.toString(), myPiano.notes[4]);
 				} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -112,7 +120,7 @@ public class MyPanel extends JPanel implements Runnable {
 			if (key == KeyEvent.VK_H) {
 				try {
 					pk.playSound(b.Currentoctave(b.octave_left),"-a.wav");
-					update(myPiano.notes[5]);
+					//update(b.octave_left.toString(), myPiano.notes[5]);
 				} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -122,7 +130,7 @@ public class MyPanel extends JPanel implements Runnable {
 			if (key == KeyEvent.VK_J) {
 				try {
 					pk.playSound(b.Currentoctave(b.octave_left),"-b.wav");
-					update(myPiano.notes[6]);
+					//update(b.octave_left.toString(), myPiano.notes[6]);
 				} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -133,8 +141,8 @@ public class MyPanel extends JPanel implements Runnable {
 			if (key == KeyEvent.VK_V) {
 				try {
 					//System.out.println(b.Currentoctave(b.octave_left)+1);
-					pk.playSound(b.nextOctave(b.octave_left), "-c.wav"); // plays sound if certain key is pressed
-					update(myPiano.notes[0]); // updates the output arrayList
+					pk.playSound(b.nextOctave(b.octave_right), "-c.wav"); // plays sound if certain key is pressed
+					//update(b.octave_right.toString(), myPiano.notes[0]); // updates the output arrayList
 					myPiano.wk[0].pressed = true; // sets the corresponding key as pressed
 				} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
 					// TODO Auto-generated catch block
@@ -144,8 +152,8 @@ public class MyPanel extends JPanel implements Runnable {
 			}
 			if (key == KeyEvent.VK_B) {
 				try {
-					pk.playSound(b.nextOctave(b.octave_left),"-d.wav");
-					update(myPiano.notes[1]);
+					pk.playSound(b.nextOctave(b.octave_right),"-d.wav");
+					//update(b.octave_right.toString(), myPiano.notes[1]);
 				} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
 					// TODO Auto-generated catch block
 					((Throwable) e1).printStackTrace();
@@ -154,8 +162,8 @@ public class MyPanel extends JPanel implements Runnable {
 			}
 			if (key == KeyEvent.VK_N) {
 				try {
-					pk.playSound(b.nextOctave(b.octave_left),"-e.wav");
-					update(myPiano.notes[2]);
+					pk.playSound(b.nextOctave(b.octave_right),"-e.wav");
+					//update(b.octave_right.toString(), myPiano.notes[2]);
 				} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -164,8 +172,8 @@ public class MyPanel extends JPanel implements Runnable {
 			}
 			if (key == KeyEvent.VK_M) {
 				try {
-					pk.playSound(b.nextOctave(b.octave_left),"-f.wav");
-					update(myPiano.notes[3]);
+					pk.playSound(b.nextOctave(b.octave_right), "-f.wav");
+					//update(b.octave_right.toString(), myPiano.notes[3]);
 				} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -174,8 +182,8 @@ public class MyPanel extends JPanel implements Runnable {
 			}
 			if (key == KeyEvent.VK_COMMA) {
 				try {
-					pk.playSound(b.nextOctave(b.octave_left),"-g.wav");
-					update(myPiano.notes[4]);
+					pk.playSound(b.nextOctave(b.octave_right),"-g.wav");
+					//update(b.octave_right.toString(), myPiano.notes[4]);
 				} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -184,8 +192,8 @@ public class MyPanel extends JPanel implements Runnable {
 			}
 			if (key == KeyEvent.VK_PERIOD) {
 				try {
-					pk.playSound(b.nextOctave(b.octave_left),"-a.wav");
-					update(myPiano.notes[5]);
+					pk.playSound(b.nextOctave(b.octave_right),"-a.wav");
+					//update(b.octave_right.toString(), myPiano.notes[5]);
 				} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -194,8 +202,8 @@ public class MyPanel extends JPanel implements Runnable {
 			}
 			if (key == KeyEvent.VK_SLASH) {
 				try {
-					pk.playSound(b.nextOctave(b.octave_left),"-b.wav");
-					update(myPiano.notes[6]);
+					pk.playSound(b.nextOctave(b.octave_right),"-b.wav");
+					//update(b.octave_right.toString(), myPiano.notes[6]);
 				} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -206,8 +214,8 @@ public class MyPanel extends JPanel implements Runnable {
 			// black keys
 			if (key == KeyEvent.VK_Q) {
 				try {
-					pk.playSound(b.Currentoctave(b.octave_left),"-cs.wav");
-					update(myPiano.sharpNotes[0]);
+					pk.playSound(b.Currentoctave(b.octave_right),"-cs.wav");
+					//update(b.octave_right.toString(), myPiano.sharpNotes[0]);
 				} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -216,8 +224,8 @@ public class MyPanel extends JPanel implements Runnable {
 			}
 			if (key == KeyEvent.VK_W) {
 				try {
-					pk.playSound(b.Currentoctave(b.octave_left),"-ds.wav");
-					update(myPiano.sharpNotes[1]);
+					pk.playSound(b.Currentoctave(b.octave_right),"-ds.wav");
+					//update(b.octave_right.toString(), myPiano.sharpNotes[1]);
 				} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -226,8 +234,8 @@ public class MyPanel extends JPanel implements Runnable {
 			}
 			if (key == KeyEvent.VK_E) {
 				try {
-					pk.playSound(b.Currentoctave(b.octave_left),"-fs.wav");
-					update(myPiano.sharpNotes[2]);
+					pk.playSound(b.Currentoctave(b.octave_right),"-fs.wav");
+					//update(b.octave_right.toString(), myPiano.sharpNotes[2]);
 				} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -236,8 +244,8 @@ public class MyPanel extends JPanel implements Runnable {
 			}
 			if (key == KeyEvent.VK_R) {
 				try {
-					pk.playSound(b.Currentoctave(b.octave_left),"-gs.wav");
-					update(myPiano.sharpNotes[3]);
+					pk.playSound(b.Currentoctave(b.octave_right),"-gs.wav");
+					//update(b.octave_right.toString(), myPiano.sharpNotes[3]);
 				} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -246,8 +254,8 @@ public class MyPanel extends JPanel implements Runnable {
 			}
 			if (key == KeyEvent.VK_T) {
 				try {
-					pk.playSound(b.Currentoctave(b.octave_left),"-as.wav");
-					update(myPiano.sharpNotes[4]);
+					pk.playSound(b.Currentoctave(b.octave_right),"-as.wav");
+					//update(b.octave_right.toString(), myPiano.sharpNotes[4]);
 				} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -257,8 +265,8 @@ public class MyPanel extends JPanel implements Runnable {
 			//second octave 
 			if (key == KeyEvent.VK_Y) {
 				try {
-					pk.playSound(b.nextOctave(b.octave_left),"-cs.wav");
-					update(myPiano.sharpNotes[0]);
+					pk.playSound(b.nextOctave(b.octave_right),"-cs.wav");
+					//update(b.octave_right.toString(), myPiano.sharpNotes[0]);
 				} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -268,7 +276,7 @@ public class MyPanel extends JPanel implements Runnable {
 			if (key == KeyEvent.VK_U) {
 				try {
 					pk.playSound(b.nextOctave(b.octave_left),"-ds.wav");
-					update(myPiano.sharpNotes[1]);
+					//update(myPiano.sharpNotes[1]);
 				} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -278,7 +286,7 @@ public class MyPanel extends JPanel implements Runnable {
 			if (key == KeyEvent.VK_I) {
 				try {
 					pk.playSound(b.nextOctave(b.octave_left),"-fs.wav");
-					update(myPiano.sharpNotes[2]);
+					//update(myPiano.sharpNotes[2]);
 				} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -288,7 +296,7 @@ public class MyPanel extends JPanel implements Runnable {
 			if (key == KeyEvent.VK_O) {
 				try {
 					pk.playSound(b.nextOctave(b.octave_left),"-gs.wav");
-					update(myPiano.sharpNotes[3]);
+					//update(myPiano.sharpNotes[3]);
 				} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -298,7 +306,7 @@ public class MyPanel extends JPanel implements Runnable {
 			if (key == KeyEvent.VK_P) {
 				try {
 					pk.playSound(b.nextOctave(b.octave_left),"-as.wav");
-					update(myPiano.sharpNotes[4]);
+					//update(myPiano.sharpNotes[4]);
 				} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -355,7 +363,8 @@ public class MyPanel extends JPanel implements Runnable {
 	}
 
 	public void update() {
-
+		s1.update();
+		s2.update();
 	}
 
 	public void paintComponent(Graphics g) {
@@ -364,6 +373,9 @@ public class MyPanel extends JPanel implements Runnable {
 
 		myPiano.draw(g2);
 		b.draw(g2);
+		s1.draw(g2);
+		s2.draw(g2);
+
 		try {
 			as.draw(g2, outputs, 0, 0, 30, 30);
 		} catch (IOException e) {
