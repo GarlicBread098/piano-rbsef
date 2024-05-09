@@ -10,6 +10,9 @@ import javax.imageio.ImageIO;
 
 public class Slider {
     BufferedImage notches,slider;
+
+        static int numberOfSliders = 0;
+        public int currentSliderNumber;
     
         public int x;
         public int y;
@@ -24,7 +27,8 @@ public class Slider {
         public Slider(int x, int y, int width, int height) {
             loadImages();
             setParameters(x, y, width, height);
-
+            numberOfSliders++;
+            currentSliderNumber = numberOfSliders;
         }
 
         public String octaveToString(){

@@ -19,6 +19,7 @@ public class Bezel extends JPanel {
 
 	
 	public Bezel() {
+		
 		octave_left.setPreferredSize(new Dimension(200, 100));
         octave_left.setPaintTicks(true);
         octave_left.setPaintTrack(true);
