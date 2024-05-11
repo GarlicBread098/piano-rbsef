@@ -18,7 +18,7 @@ public class Slider {
         public int y;
         public int width;
         public int height;
-        public int octave = 7;
+        public int octave;
 
         public int sliderX;
         public int sliderWidth;
@@ -26,9 +26,9 @@ public class Slider {
 
         public Slider(int x, int y, int width, int height) {
             loadImages();
-            setParameters(x, y, width, height);
             numberOfSliders++;
             currentSliderNumber = numberOfSliders;
+            setParameters(x, y, width, height);
         }
 
         public String octaveToString(){
@@ -53,6 +53,16 @@ public class Slider {
 
             sliderWidth = width/8;
             sliderX = x + ((octave) * sliderWidth) - (sliderWidth/2);
+
+            if(currentSliderNumber == 1){
+                octave = 3;
+            }
+            else if(currentSliderNumber == 2){
+                octave = 4;
+            }
+            else{
+                octave = 5;
+            }
             //sliderX = (x -(width/7)/2 - 35) + (octave * 35); //Sets the sliders X position by getting the x position of the slider and then subtracting half of the width of the slider and then subtracting 35 to get the correct position
             
         }

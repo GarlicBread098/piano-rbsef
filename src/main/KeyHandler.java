@@ -13,7 +13,10 @@ import src.bezel.Slider;
 import src.piano.PlayKey;
 
 public class KeyHandler implements KeyListener {
+    //     <Keystroke, Key   >
     HashMap<Character, String> controlsOctave1, controlsOctave2;
+    //     <Key,    true/false>
+    HashMap<String, Boolean> keysPressed1, keysPressed2; 
     PlayKey pk;
     Slider s1, s2;
 
@@ -23,6 +26,8 @@ public class KeyHandler implements KeyListener {
         this.s2 = s2;
         controlsOctave1 = new HashMap<>();
         controlsOctave2 = new HashMap<>();
+        keysPressed1 = new HashMap<>();
+        keysPressed2 = new HashMap<>();
         setDefaultControls();
     }
 
@@ -47,7 +52,8 @@ public class KeyHandler implements KeyListener {
 
     @Override
     public void keyReleased(KeyEvent e) {
-        // TODO Auto-generated method stub
+        stopPlayingKey(e,s1);
+        stopPlayingKey(e,s2);
         //throw new UnsupportedOperationException("Unimplemented method 'keyReleased'");
     }
 
@@ -84,18 +90,46 @@ public class KeyHandler implements KeyListener {
         controlsOctave2.put('o', "gs");
         controlsOctave2.put('p', "as");
     }
-    public void checkIfPlayPianoKey(KeyEvent key,Slider s) throws FileNotFoundException, UnsupportedAudioFileException, IOException, LineUnavailableException{
+
+    public void setPianoKeysPressed(){//sets all the keys pressed to false
+        for(String key : controlsOctave1.values()){
+            keysPressed1.put(key, false);
+        }
+        for(String key : controlsOctave2.values()){
+            keysPressed2.put(key, false);
+        }
+    }
+
+
+    public void stopPlayingKey(KeyEvent key, Slider s){//updates the keys pressed given if the respective keybind is released
+        char keyChar = key.getKeyChar();
+        if(s.currentSliderNumber == 1){
+            //keysPressed1.put(controlsOctave1.get(keyChar), false);
+            pk.stopSound(s.octaveToString(), "-" + controlsOctave1.get(keyChar) + ".wav",s);
+            //System.out.println(keysPressed1.get(controlsOctave1.get(keyChar)));
+        }
+        else if(s.currentSliderNumber == 2){
+            //keysPressed2.put(controlsOctave2.get(keyChar), false);
+            System.out.println("bruh");
+            pk.stopSound(s.octaveToString(), "-" + controlsOctave2.get(keyChar) + ".wav",s);
+        }
+    }
+
+
+    public void checkIfPlayPianoKey(KeyEvent key,Slider s) throws FileNotFoundException, UnsupportedAudioFileException, IOException, LineUnavailableException{//plays the piano key if the key pressed is a piano key
         char keyChar = key.getKeyChar();
         String path = "";
         
         if(s.currentSliderNumber == 1){
             path = "-" + controlsOctave1.get(keyChar) + ".wav";
+            keysPressed1.put(controlsOctave1.get(keyChar), true);//sets the key pressed to true
         }
         else if(s.currentSliderNumber == 2){
             path = "-" + controlsOctave2.get(keyChar) + ".wav";
+            keysPressed2.put(controlsOctave2.get(keyChar), true);//sets the key pressed to true
         }
         
        
-        pk.playSound(s.octaveToString(), path);
+        pk.playSound(s.octaveToString(), path,s);//plays the sound
     }
 }

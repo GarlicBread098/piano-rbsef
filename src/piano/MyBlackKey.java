@@ -6,8 +6,8 @@ public class MyBlackKey {
     static int width = (MyWhiteKey.width * 2)/3; // width of each black key
 	public static int height = (MyWhiteKey.height * 2)/3; // height of each black key
 	
+    //public boolean pressed = false; 
 	int octave;
-	
 	String note;
 
     public MyBlackKey(){
