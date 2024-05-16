@@ -22,12 +22,12 @@ public class PlayKey {
 		clips2 = new HashMap<String, Clip>();
 	}
 	
-	public synchronized void playSound(String octave, String str, Slider s) throws FileNotFoundException, UnsupportedAudioFileException, IOException, LineUnavailableException {
+	public synchronized void playSound(String str, Slider s) throws FileNotFoundException, UnsupportedAudioFileException, IOException, LineUnavailableException {
 		new Thread(new Runnable() {
 			public void run() {
 				try {
 					Clip clip = AudioSystem.getClip(); // creates a new audio clip 
-					String path = "/NOTES/" + octave + str;
+					String path = "/NOTES/" + str;
 					
 					AudioInputStream inputStream = AudioSystem.getAudioInputStream(
 						MyPiano.class.getResourceAsStream(path)); // gets access to folder with audio files
@@ -47,8 +47,8 @@ public class PlayKey {
 		}).start(); //starts audio clip
 	}
 
-	public void stopSound(String octave, String str, Slider s) {//Stops the sound
-		String path = "/NOTES/" + octave + str;//gets the path of the specified sound
+	public void stopSound(String str, Slider s) throws InterruptedException {//Stops the sound
+		String path = "/NOTES/" + str;//gets the path of the specified sound
 		Clip clip = null;
 		if(s.currentSliderNumber == 1){
 			clip = clips1.get(path);//gets the clip from the hashmap

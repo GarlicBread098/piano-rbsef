@@ -52,7 +52,7 @@ public class MouseHandler implements MouseListener {
            if((y < (Bezel.bezelHeight + MyBlackKey.height)) && (withinBlackKeyX || withinBlackKeyX2)){  // checks if the y coordinate is within the black key area
                 if(bk[0].leftBoundX < x && x < bk[0].rightBoundX){ // checks if the x coordinate is within c sharp
                     try {
-                        pk.playSound(s1.octaveToString(),"-cs.wav",s1);
+                        pk.playSound(s1.octaveToString()+"-cs.wav",s1);
                     } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
                         // TODO Auto-generated catch block
                         e1.printStackTrace();
@@ -60,7 +60,7 @@ public class MouseHandler implements MouseListener {
                 }
                 else if(bk[1].leftBoundX < x && x < bk[1].rightBoundX){
                     try {
-                        pk.playSound(s1.octaveToString(),"-ds.wav",s1);
+                        pk.playSound(s1.octaveToString()+"-ds.wav",s1);
                     } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
                         // TODO Auto-generated catch block
                         e1.printStackTrace();
@@ -68,7 +68,7 @@ public class MouseHandler implements MouseListener {
                 }
                 else if(bk[2].leftBoundX < x && x < bk[2].rightBoundX){
                     try {
-                        pk.playSound(s1.octaveToString(),"-fs.wav",s1);
+                        pk.playSound(s1.octaveToString()+"-fs.wav",s1);
                     } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
                         // TODO Auto-generated catch block
                         e1.printStackTrace();
@@ -76,7 +76,7 @@ public class MouseHandler implements MouseListener {
                 }
                 else if(bk[3].leftBoundX < x && x < bk[3].rightBoundX){
                     try {
-                        pk.playSound(s1.octaveToString(),"-gs.wav",s1);
+                        pk.playSound(s1.octaveToString()+"-gs.wav",s1);
                     } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
                         // TODO Auto-generated catch block
                         e1.printStackTrace();
@@ -84,7 +84,7 @@ public class MouseHandler implements MouseListener {
                 }
                 else if(bk[4].leftBoundX < x && x < bk[4].rightBoundX){
                     try {
-                        pk.playSound(s1.octaveToString(),"-as.wav",s1);
+                        pk.playSound(s1.octaveToString()+"-as.wav",s1);
                     } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
                         // TODO Auto-generated catch block
                         e1.printStackTrace();
@@ -93,7 +93,7 @@ public class MouseHandler implements MouseListener {
                 //second octave of black keys
                 else if(bk[5].leftBoundX < x && x < bk[5].rightBoundX){
                     try {
-                        pk.playSound(s2.octaveToString(),"-cs.wav",s2);
+                        pk.playSound(s2.octaveToString()+"-cs.wav",s2);
                     } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
                         // TODO Auto-generated catch block
                         e1.printStackTrace();
@@ -101,7 +101,7 @@ public class MouseHandler implements MouseListener {
                 }
                 else if(bk[6].leftBoundX < x && x < bk[6].rightBoundX){
                     try {
-                        pk.playSound(s2.octaveToString(),"-ds.wav",s2);
+                        pk.playSound(s2.octaveToString()+"-ds.wav",s2);
                     } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
                         // TODO Auto-generated catch block
                         e1.printStackTrace();
@@ -109,7 +109,7 @@ public class MouseHandler implements MouseListener {
                 }
                 else if(bk[7].leftBoundX < x && x < bk[7].rightBoundX){
                     try {
-                        pk.playSound(s2.octaveToString(),"-fs.wav",s2);
+                        pk.playSound(s2.octaveToString()+"-fs.wav",s2);
                     } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
                         // TODO Auto-generated catch block
                         e1.printStackTrace();
@@ -117,7 +117,7 @@ public class MouseHandler implements MouseListener {
                 }
                 else if(bk[8].leftBoundX < x && x < bk[8].rightBoundX){
                     try {
-                        pk.playSound(s2.octaveToString(),"-gs.wav",s2);
+                        pk.playSound(s2.octaveToString()+"-gs.wav",s2);
                     } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
                         // TODO Auto-generated catch block
                         e1.printStackTrace();
@@ -125,7 +125,7 @@ public class MouseHandler implements MouseListener {
                 }
                 else if(bk[9].leftBoundX < x && x < bk[9].rightBoundX){
                     try {
-                        pk.playSound(s2.octaveToString(),"-as.wav",s2);
+                        pk.playSound(s2.octaveToString()+"-as.wav",s2);
                     } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
                         // TODO Auto-generated catch block
                         e1.printStackTrace();
@@ -138,7 +138,7 @@ public class MouseHandler implements MouseListener {
                 //First octave of white keys
                 if(wk[0].leftBoundX < x && x < wk[0].rightBoundX){
                     try {
-                        pk.playSound(s1.octaveToString(), "-c.wav",s1);
+                        pk.playSound(s1.octaveToString()+ "-c.wav",s1);
                     } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
                         // TODO Auto-generated catch block
                         e1.printStackTrace();
@@ -146,7 +146,7 @@ public class MouseHandler implements MouseListener {
                 }
                 else if(wk[1].leftBoundX < x && x < wk[1].rightBoundX){
                     try {
-                        pk.playSound(s1.octaveToString(),"-d.wav",s1);
+                        pk.playSound(s1.octaveToString()+"-d.wav",s1);
                     } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
                         // TODO Auto-generated catch block
                         e1.printStackTrace();
@@ -154,7 +154,7 @@ public class MouseHandler implements MouseListener {
                 }
                 else if(wk[2].leftBoundX < x && x < wk[2].rightBoundX){
                     try {
-                        pk.playSound(s1.octaveToString(),"-e.wav",s1);
+                        pk.playSound(s1.octaveToString()+"-e.wav",s1);
                     } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
                         // TODO Auto-generated catch block
                         e1.printStackTrace();
@@ -162,7 +162,7 @@ public class MouseHandler implements MouseListener {
                 }
                 else if(wk[3].leftBoundX < x && x < wk[3].rightBoundX){
                     try {
-                        pk.playSound(s1.octaveToString(),"-f.wav",s1);
+                        pk.playSound(s1.octaveToString()+"-f.wav",s1);
                     } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
                         // TODO Auto-generated catch block
                         e1.printStackTrace();
@@ -170,7 +170,7 @@ public class MouseHandler implements MouseListener {
                 }
                 else if(wk[4].leftBoundX < x && x < wk[4].rightBoundX){
                     try {
-                        pk.playSound(s1.octaveToString(),"-g.wav",s1);
+                        pk.playSound(s1.octaveToString()+"-g.wav",s1);
                     } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
                         // TODO Auto-generated catch block
                         e1.printStackTrace();
@@ -178,7 +178,7 @@ public class MouseHandler implements MouseListener {
                 }
                 else if(wk[5].leftBoundX < x && x < wk[5].rightBoundX){
                     try {
-                        pk.playSound(s1.octaveToString(),"-a.wav",s1);
+                        pk.playSound(s1.octaveToString()+"-a.wav",s1);
                     } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
                         // TODO Auto-generated catch block
                         e1.printStackTrace();
@@ -186,7 +186,7 @@ public class MouseHandler implements MouseListener {
                 }
                 else if(wk[6].leftBoundX < x && x < wk[6].rightBoundX){
                     try {
-                        pk.playSound(s1.octaveToString(),"-b.wav",s1);
+                        pk.playSound(s1.octaveToString()+"-b.wav",s1);
                     } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
                         // TODO Auto-generated catch block
                         e1.printStackTrace();
@@ -196,7 +196,7 @@ public class MouseHandler implements MouseListener {
                 
                 else if(wk[7].leftBoundX < x && x < wk[7].rightBoundX){
                     try {
-                        pk.playSound(s2.octaveToString(),"-c.wav",s2);
+                        pk.playSound(s2.octaveToString()+"-c.wav",s2);
                     } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
                         // TODO Auto-generated catch block
                         e1.printStackTrace();
@@ -204,7 +204,7 @@ public class MouseHandler implements MouseListener {
                 }
                 else if(wk[8].leftBoundX < x && x < wk[8].rightBoundX){
                     try {
-                        pk.playSound(s2.octaveToString(),"-d.wav",  s2);
+                        pk.playSound(s2.octaveToString()+"-d.wav",  s2);
                     } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
                         // TODO Auto-generated catch block
                         e1.printStackTrace();
@@ -212,7 +212,7 @@ public class MouseHandler implements MouseListener {
                 }
                 else if(wk[9].leftBoundX < x && x < wk[9].rightBoundX){
                     try {
-                        pk.playSound(s2.octaveToString(),"-e.wav", s2);
+                        pk.playSound(s2.octaveToString()+"-e.wav", s2);
                     } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
                         // TODO Auto-generated catch block
                         e1.printStackTrace();
@@ -220,7 +220,7 @@ public class MouseHandler implements MouseListener {
                 }
                 else if(wk[10].leftBoundX < x && x < wk[10].rightBoundX){
                     try {
-                        pk.playSound(s2.octaveToString(),"-f.wav", s2);
+                        pk.playSound(s2.octaveToString()+"-f.wav", s2);
                     } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
                         // TODO Auto-generated catch block
                         e1.printStackTrace();
@@ -228,7 +228,7 @@ public class MouseHandler implements MouseListener {
                 }
                 else if(wk[11].leftBoundX < x && x < wk[11].rightBoundX){
                     try {
-                        pk.playSound(s2.octaveToString(),"-g.wav", s2);
+                        pk.playSound(s2.octaveToString()+"-g.wav", s2);
                     } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
                         // TODO Auto-generated catch block
                         e1.printStackTrace();
@@ -236,7 +236,7 @@ public class MouseHandler implements MouseListener {
                 }
                 else if(wk[12].leftBoundX < x && x < wk[12].rightBoundX){
                     try {
-                        pk.playSound(s2.octaveToString(),"-a.wav", s2);
+                        pk.playSound(s2.octaveToString()+"-a.wav", s2);
                     } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
                         // TODO Auto-generated catch block
                         e1.printStackTrace();
@@ -244,7 +244,7 @@ public class MouseHandler implements MouseListener {
                 }
                 else if(wk[13].leftBoundX < x && x < wk[13].rightBoundX){
                     try {
-                        pk.playSound(s2.octaveToString(),"-b.wav", s2);
+                        pk.playSound(s2.octaveToString()+"-b.wav", s2);
                     } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
 
                         // TODO Auto-generated catch block

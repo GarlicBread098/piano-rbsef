@@ -21,7 +21,7 @@ import src.piano.PlayKey;
 public class MyPanel extends JPanel implements Runnable {
 
 	Thread appThread = new Thread();
-
+	
 	MyPiano myPiano = new MyPiano();
 	Bezel b = new Bezel();
 	Slider s1 = new Slider(50,b.bezelHeight/5, 315,45); // creates the first Slider for the first Octave 210-30
@@ -75,7 +75,12 @@ public class MyPanel extends JPanel implements Runnable {
 			// long currentTime = System.nanoTime();//returns the current value of the
 			// running java virtual machines high-resolution time source, in nanoseconds
 
-			update();// updates information
+			try {
+				update();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}// updates information
 			repaint();// Draws the screen with the updated information
 
 			try {
@@ -92,9 +97,10 @@ public class MyPanel extends JPanel implements Runnable {
 		}
 	}
 
-	public void update() {
+	public void update() throws InterruptedException {
 		s1.update();
 		s2.update();
+		kh.update();
 	}
 
 	public void paintComponent(Graphics g) {
@@ -115,5 +121,4 @@ public class MyPanel extends JPanel implements Runnable {
 		g2.dispose();// This disposes of this graphics context and release any system resources that
 						// it is using.
 	}
-
 }
