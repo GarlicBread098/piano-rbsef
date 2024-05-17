@@ -21,13 +21,15 @@ public class KeyHandler implements KeyListener {
     //     <Keystroke, Key   >
     HashMap<Character, String> controlsOctave1, controlsOctave2;
     //     <Keypath,    true/false>
-    HashMap<String, Boolean> keyStillPlaying1, keyStillPlaying2; 
+    public HashMap<String, Boolean> keyStillPlaying1;
+    public HashMap<String, Boolean> keyStillPlaying2; 
     //      <keypath, Timer>
     HashMap<String, Timer> keyTimers1, keyTimers2;
     //    <Keypath,    true/false>
     HashMap<String, Boolean> keyBeingPressed1, keyBeingPressed2;
     PlayKey pk;
-    Slider s1, s2;
+    public Slider s1;
+    public Slider s2;
 
     int previousOctave1, previousOctave2;
 
@@ -80,7 +82,7 @@ public class KeyHandler implements KeyListener {
         //throw new UnsupportedOperationException("Unimplemented method 'keyPressed'");
     }
 
-    private boolean sliderChanged(Slider s) {
+    public boolean sliderChanged(Slider s) {
         if(s.currentSliderNumber == 1 && previousOctave1 != s.octave){
             previousOctave1 = s.octave;
             return true;

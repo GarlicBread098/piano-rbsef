@@ -22,15 +22,15 @@ public class MyPanel extends JPanel implements Runnable {
 
 	Thread appThread = new Thread();
 	
-	MyPiano myPiano = new MyPiano();
 	Bezel b = new Bezel();
 	Slider s1 = new Slider(50,b.bezelHeight/5, 315,45); // creates the first Slider for the first Octave 210-30
 	Slider s2 = new Slider(50,b.bezelHeight/5 + 60, 315,45); // creates the second Slider for the second Octave
 
 	PlayKey pk = new PlayKey();
-	MouseHandler mh = new MouseHandler(myPiano.bk, myPiano.wk,s1,s2);
 	KeyHandler kh = new KeyHandler(pk, s1,s2);
-	AnimateString as = new AnimateString();
+	MyPiano myPiano = new MyPiano(kh);
+	MouseHandler mh = new MouseHandler(myPiano.bk, myPiano.wk,s1,s2);
+	//AnimateString as = new AnimateString();
 	ArrayList<String> outputs = new ArrayList<String>();
 	
 
@@ -118,12 +118,7 @@ public class MyPanel extends JPanel implements Runnable {
 		s1.draw(g2);
 		s2.draw(g2);
 
-		try {
-			as.draw(g2, outputs, 0, 0, 30, 30);
-		} catch (IOException e) {
-			System.out.println("bruhbrhubrhrbuhrbuhbruhrbruurbrbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbu");
-			e.printStackTrace();
-		}
+		
 		g2.dispose();// This disposes of this graphics context and release any system resources that
 						// it is using.
 	}

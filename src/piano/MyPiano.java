@@ -6,6 +6,7 @@ import java.io.IOException;
 
 import javax.swing.JPanel;
 
+import src.main.KeyHandler;
 import src.main.MyPanel;
 
 public class MyPiano extends JPanel {
@@ -26,7 +27,10 @@ public class MyPiano extends JPanel {
 	public String notes[] = { "C", "D", "E", "F", "G", "A", "B" }; // labels for white notes
 	public String sharpNotes[] = { "C#", "D#", "F#", "G#", "A#" }; // labels for black notes
 
-	public MyPiano() {
+	KeyHandler kh;
+
+	public MyPiano(KeyHandler kh) {
+		this.kh = kh;
 
 	}
 
@@ -45,7 +49,7 @@ public class MyPiano extends JPanel {
 			int y1 = (MyPanel.screenHeight) / 5;
 			int y2 = MyPanel.screenHeight;
 
-			wk[i] = new MyWhiteKey(); // creates each individual white key
+			wk[i] = new MyWhiteKey(i,kh); // creates each individual white key
 			wk[i].leftBoundX = x1; // sets the boundaries on the left and right dependent on the x coordinate
 			wk[i].rightBoundX = x2;
 
@@ -74,7 +78,7 @@ public class MyPiano extends JPanel {
 
 			// g2.setColor(Color.BLACK);
 			if (i == 0 || i == 1 || i == 5 || i == 6) {
-				bk[i] = new MyBlackKey();
+				bk[i] = new MyBlackKey(i,kh);
 				bk[i].draw(g2,blackX, blackY, blackWidth, blackHeight);
 				bk[i].leftBoundX = blackX; // sets the x boundary on the left
 				bk[i].rightBoundX = blackX + MyBlackKey.width; // sets the y boundary on the right
@@ -86,7 +90,7 @@ public class MyPiano extends JPanel {
 				}
 
 			} else if (i == 2 || i == 3 || i == 4 || i == 7 || i == 8 || i == 9) {
-				bk[i] = new MyBlackKey();
+				bk[i] = new MyBlackKey(i, kh);
 				bk[i].draw(g2,blackX, blackY, blackWidth, blackHeight);
 				bk[i].leftBoundX = blackX; // sets the x boundary on the left
 				bk[i].rightBoundX = blackX + MyBlackKey.width; // sets the y boundary on the right
