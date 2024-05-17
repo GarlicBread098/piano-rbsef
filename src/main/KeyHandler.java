@@ -29,10 +29,14 @@ public class KeyHandler implements KeyListener {
     PlayKey pk;
     Slider s1, s2;
 
+    int previousOctave1, previousOctave2;
+
     public KeyHandler(PlayKey pk, Slider s1, Slider s2) {
         this.pk = pk;
         this.s1 = s1;
         this.s2 = s2;
+        previousOctave1 = s1.octave;
+        previousOctave2 = s2.octave;
         controlsOctave1 = new HashMap<>();
         controlsOctave2 = new HashMap<>();
         setDefaultControls();
@@ -40,7 +44,8 @@ public class KeyHandler implements KeyListener {
         keyStillPlaying2 = new HashMap<>();
         keyBeingPressed1 = new HashMap<>();
         keyBeingPressed2 = new HashMap<>();
-        setPianoKeysPressed();
+        setPianoKeysPressed(s1);
+        setPianoKeysPressed(s2);
         keyTimers1 = new HashMap<>();
         keyTimers2 = new HashMap<>();
         
@@ -55,6 +60,12 @@ public class KeyHandler implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
+        if(sliderChanged(s1)){
+            setPianoKeysPressed(s1);
+        }
+        if(sliderChanged(s2)){
+            setPianoKeysPressed(s2);
+        }
         try {
             if(controlsOctave1.containsKey(e.getKeyChar())){
                 playPianoKey(e,s1);
@@ -67,6 +78,18 @@ public class KeyHandler implements KeyListener {
             e1.printStackTrace();
         }
         //throw new UnsupportedOperationException("Unimplemented method 'keyPressed'");
+    }
+
+    private boolean sliderChanged(Slider s) {
+        if(s.currentSliderNumber == 1 && previousOctave1 != s.octave){
+            previousOctave1 = s.octave;
+            return true;
+        }
+        else if(s.currentSliderNumber == 2 && previousOctave2 != s.octave){
+            previousOctave2 = s.octave;
+            return true;
+        }
+        return false;
     }
 
     @Override
@@ -119,18 +142,21 @@ public class KeyHandler implements KeyListener {
         controlsOctave2.put('p', "as");
     }
 
-    public void setPianoKeysPressed(){//sets all the keys pressed to false
+    public void setPianoKeysPressed(Slider s){//sets all the keys pressed to false
         
-        for(String key : controlsOctave1.values()){  
-            String path = ""+s1.octaveToString() + "-" + key + ".wav";
-            keyStillPlaying1.put(path, false);
-            keyBeingPressed1.put(path, false);
-            
+        if(s.currentSliderNumber == 1){
+            for(String key : controlsOctave1.values()){  
+                String path = ""+s.octaveToString() + "-" + key + ".wav";
+                keyStillPlaying1.put(path, false);
+                keyBeingPressed1.put(path, false);
+            }
         }
-        for(String key : controlsOctave2.values()){
-            String path = ""+s2.octaveToString() + "-" + key + ".wav";
-            keyStillPlaying2.put(path, false);
-            keyBeingPressed2.put(path, false);
+        else if(s.currentSliderNumber == 2){
+            for(String key : controlsOctave2.values()){
+                String path = ""+s.octaveToString() + "-" + key + ".wav";
+                keyStillPlaying2.put(path, false);
+                keyBeingPressed2.put(path, false);
+            }
         }
     }
 

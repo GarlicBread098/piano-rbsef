@@ -2,6 +2,7 @@ package src.piano;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.io.IOException;
 
 import javax.swing.JPanel;
 
@@ -29,7 +30,7 @@ public class MyPiano extends JPanel {
 
 	}
 
-	public void draw(Graphics2D g2) {
+	public void draw(Graphics2D g2) throws IOException {
 		int blackX = (MyWhiteKey.width * 2) / 3;// the starting position of the black key x cordinate in reference to
 												// drawing the rectangle, it must be at the two thirds of the way of the
 												// white key
@@ -48,13 +49,14 @@ public class MyPiano extends JPanel {
 			wk[i].leftBoundX = x1; // sets the boundaries on the left and right dependent on the x coordinate
 			wk[i].rightBoundX = x2;
 
-			g2.setColor(Color.BLACK);
-
+			wk[i].draw(g2, x1, y1, MyWhiteKey.width, MyWhiteKey.height); // draws the white key
+			//g2.setColor(Color.BLACK);
+			/* 
 			g2.drawLine(x1, y1, x2, y1);// top horizontal
 			g2.drawLine(x1, y2, x2, y2);// bottom horizontal
 			g2.drawLine(x1, y1, x1, y2);// left vertical
 			g2.drawLine(x2, y1, x2, y2);// right vertical
-
+			*/
 			/*
 			 * if (wk[i].pressed == true) {
 			 * g2.setColor(Color.BLUE);
@@ -72,8 +74,8 @@ public class MyPiano extends JPanel {
 
 			// g2.setColor(Color.BLACK);
 			if (i == 0 || i == 1 || i == 5 || i == 6) {
-				g2.fillRect(blackX, blackY, blackWidth, blackHeight);
 				bk[i] = new MyBlackKey();
+				bk[i].draw(g2,blackX, blackY, blackWidth, blackHeight);
 				bk[i].leftBoundX = blackX; // sets the x boundary on the left
 				bk[i].rightBoundX = blackX + MyBlackKey.width; // sets the y boundary on the right
 
@@ -84,8 +86,8 @@ public class MyPiano extends JPanel {
 				}
 
 			} else if (i == 2 || i == 3 || i == 4 || i == 7 || i == 8 || i == 9) {
-				g2.fillRect(blackX, blackY, blackWidth, blackHeight);
 				bk[i] = new MyBlackKey();
+				bk[i].draw(g2,blackX, blackY, blackWidth, blackHeight);
 				bk[i].leftBoundX = blackX; // sets the x boundary on the left
 				bk[i].rightBoundX = blackX + MyBlackKey.width; // sets the y boundary on the right
 

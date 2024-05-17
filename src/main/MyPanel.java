@@ -107,7 +107,13 @@ public class MyPanel extends JPanel implements Runnable {
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D) g;
 
-		myPiano.draw(g2);
+
+		try {
+			myPiano.draw(g2);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		b.draw(g2);
 		s1.draw(g2);
 		s2.draw(g2);

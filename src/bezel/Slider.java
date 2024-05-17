@@ -80,7 +80,6 @@ public class Slider {
                 }
                 else{
                     sliderX = mouseX - (sliderWidth/2); // sets the x position of the slider to the x position of the mouse minus half of the width of the slider
-                    System.out.println(sliderX);
                 }
                 
             }
